@@ -8,7 +8,7 @@ from discord import app_commands
 db = MySQLdb.connect(
     host="discord_mysql",
     user="admin",
-    passwd="",
+    passwd="Snowbell1!",
     db="user_data"
 )
 
@@ -46,18 +46,16 @@ class Client(commands.Bot):
         for assignment in assignmentData:
             due = assignment['days_until_due']
             name = assignment['title']
-            if 0 < due < 2:
-                response.append(f'{name} is due in {due} days.')
+            if 0 < due < 1:
+                response.append(f'{name} is due in {due} day(s).')
         return response
     async def send_assignments(self, id, key): # asyncio task to get send assignment info
         user = await self.fetch_user(id)
         while True:
             response = self.get_data(key)
-            await user.send('-----------------------------------')
             for each in response:
-                await user.send(f'Yo, {each}')
+                await user.send(f'-----------------------------------\nYo, {each} 😺')
                 await asyncio.sleep(2)
-            await user.send('-----------------------------------')
             await asyncio.sleep(86400)
     async def on_ready(self):
         print(f'Logged in as {self.user}')

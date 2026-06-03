@@ -7,8 +7,8 @@ from discord import app_commands
 
 db = MySQLdb.connect(
     host="discord_mysql",
-    user="admin",
-    passwd="Snowbell1!",
+    user="",
+    passwd="",
     db="user_data"
 )
 
@@ -54,7 +54,7 @@ class Client(commands.Bot):
         while True:
             response = self.get_data(key)
             for each in response:
-                await user.send(f'-----------------------------------\nYo, {each} 😺')
+                await user.send(f'{each}')
                 await asyncio.sleep(2)
             await asyncio.sleep(86400)
     async def on_ready(self):

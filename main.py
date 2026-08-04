@@ -46,7 +46,8 @@ class Client(commands.Bot):
         for assignment in assignmentData:
             due = assignment['days_until_due']
             name = assignment['title']
-            if 0 < due < 2:
+            completed = assignment['completed']
+            if 0 < due < 2 and not completed:
                 response.append(f'{name} is due in {due} day(s).')
         return response
     async def send_assignments(self, id, key): # asyncio task to get send assignment info
